@@ -6,7 +6,7 @@ import { Menu, Transition } from "@headlessui/react";
 export default function LanguageSwitcher() {
     const { locale } = usePage().props;
     const { post, processing } = useForm({
-        locale: locale?.current || "id",
+        locale: locale?.current || "en",
     });
 
     const handleChange = (e) => {
@@ -23,7 +23,7 @@ export default function LanguageSwitcher() {
         { code: "en", name: "English", flag: "🇬🇧" },
     ];
 
-    const currentLang = languages.find((l) => l.code === locale?.current) || languages[0];
+    const currentLang = languages.find((l) => l.code === locale?.current) || languages.find((l) => l.code === "en");
 
     return (
         <Menu as="div" className="relative">
