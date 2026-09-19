@@ -153,14 +153,14 @@ export default function Create({ categories, products, units = [] }) {
             setData("stock", 0);
         }
         post(route("products.store"), {
-            onSuccess: () => toast.success("Produk berhasil ditambahkan"),
-            onError: () => toast.error("Gagal menyimpan produk"),
+            onSuccess: () => toast.success("Product added successfully"),
+            onError: () => toast.error("Failed to save product"),
         });
     };
 
     return (
         <>
-            <Head title="Tambah Produk" />
+            <Head title="Add Product" />
 
             {/* Header */}
             <div className="mb-6">
@@ -169,11 +169,11 @@ export default function Create({ categories, products, units = [] }) {
                     className="inline-flex items-center gap-2 text-sm text-slate-500 hover:text-primary-600 mb-3"
                 >
                     <IconArrowLeft size={16} />
-                    Kembali ke Produk
+                    Back to Products
                 </Link>
                 <h1 className="text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
                     <IconPackage size={28} className="text-primary-500" />
-                    Tambah Produk Baru
+                    Add New Product
                 </h1>
             </div>
 
@@ -184,7 +184,7 @@ export default function Create({ categories, products, units = [] }) {
                         <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-5">
                             <h3 className="text-sm font-semibold text-slate-700 dark:text-slate-300 mb-4 flex items-center gap-2">
                                 <IconPhoto size={18} />
-                                Gambar Produk
+                                Product Image
                             </h3>
                             <div className="aspect-square rounded-xl bg-slate-100 dark:bg-slate-800 border-2 border-dashed border-slate-300 dark:border-slate-700 flex items-center justify-center overflow-hidden mb-4">
                                 {imagePreview ? (
@@ -200,14 +200,14 @@ export default function Create({ categories, products, units = [] }) {
                                             className="mx-auto text-slate-400 mb-2"
                                         />
                                         <p className="text-sm text-slate-500">
-                                            Belum ada gambar
+                                            No image yet
                                         </p>
                                     </div>
                                 )}
                             </div>
                             <Input
                                 type="file"
-                                label="Upload Gambar"
+                                label="Upload Image"
                                 onChange={handleImageChange}
                                 errors={errors.image}
                                 accept="image/*"
@@ -221,16 +221,16 @@ export default function Create({ categories, products, units = [] }) {
                         <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-5">
                             <h3 className="text-sm font-semibold text-slate-700 dark:text-slate-300 mb-4 flex items-center gap-2">
                                 <IconBarcode size={18} />
-                                Informasi Dasar
+                                Basic Information
                             </h3>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 <div className="md:col-span-2">
                                     <InputSelect
-                                        label="Kategori"
+                                        label="Category"
                                         data={categories}
                                         selected={selectedCategory}
                                         setSelected={setSelectedCategoryHandler}
-                                        placeholder="Pilih kategori"
+                                        placeholder="Select category"
                                         errors={errors.category_id}
                                         searchable={true}
                                         displayKey="name"
@@ -244,7 +244,7 @@ export default function Create({ categories, products, units = [] }) {
                                         setData("barcode", e.target.value)
                                     }
                                     errors={errors.barcode}
-                                    placeholder="Masukkan kode produk"
+                                    placeholder="Enter product code"
                                 />
                                 <Input
                                     type="text"
@@ -252,22 +252,22 @@ export default function Create({ categories, products, units = [] }) {
                                     value={data.sku}
                                     onChange={(e) => setData("sku", e.target.value)}
                                     errors={errors.sku}
-                                    placeholder="Masukkan SKU unik"
+                                    placeholder="Enter unique SKU"
                                 />
                                 <Input
                                     type="text"
-                                    label="Nama Produk"
+                                    label="Product Name"
                                     value={data.title}
                                     onChange={(e) =>
                                         setData("title", e.target.value)
                                     }
                                     errors={errors.title}
-                                    placeholder="Masukkan nama produk"
+                                    placeholder="Enter product name"
                                 />
                                 <div className="md:col-span-2">
                                     <Textarea
-                                        label="Deskripsi"
-                                        placeholder="Deskripsi produk (opsional)"
+                                        label="Description"
+                                        placeholder="Product description (optional)"
                                         errors={errors.description}
                                         onChange={(e) =>
                                             setData(
@@ -286,7 +286,7 @@ export default function Create({ categories, products, units = [] }) {
                         <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-5">
                             <h3 className="text-sm font-semibold text-slate-700 dark:text-slate-300 mb-4 flex items-center gap-2">
                                 <IconCurrencyDollar size={18} />
-                                Harga & Stok
+                                Price & Stock
                             </h3>
                             <label className="flex items-center gap-2 mb-4 cursor-pointer">
                                 <input
@@ -299,14 +299,14 @@ export default function Create({ categories, products, units = [] }) {
                                 />
                                 <span className="text-sm font-medium text-slate-700 dark:text-slate-300 flex items-center gap-1">
                                     <IconPackages size={16} />
-                                    Produk Komposit (bundling /
-                                    paket)
+                                    Composite Product (bundle /
+                                    package)
                                 </span>
                             </label>
                             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                                 <Input
                                     type="number"
-                                    label="Harga Beli"
+                                    label="Buy Price"
                                     value={data.buy_price}
                                     onChange={(e) =>
                                         setData("buy_price", e.target.value)
@@ -316,7 +316,7 @@ export default function Create({ categories, products, units = [] }) {
                                 />
                                 <Input
                                     type="number"
-                                    label="Harga Jual"
+                                    label="Sell Price"
                                     value={data.is_composite ? "" : data.sell_price}
                                     disabled={data.is_composite}
                                     onChange={(e) =>
@@ -325,13 +325,13 @@ export default function Create({ categories, products, units = [] }) {
                                     errors={errors.sell_price}
                                     placeholder={
                                         data.is_composite
-                                            ? "Otomatis dari komponen"
+                                            ? "Calculated from components"
                                             : "0"
                                     }
                                 />
                                 <Input
                                     type="number"
-                                    label="Stok"
+                                    label="Stock"
                                     value={data.is_composite ? "" : data.stock}
                                     disabled={data.is_composite}
                                     onChange={(e) =>
@@ -340,7 +340,7 @@ export default function Create({ categories, products, units = [] }) {
                                     errors={errors.stock}
                                     placeholder={
                                         data.is_composite
-                                            ? "Dari stok komponen"
+                                            ? "From component stock"
                                             : "0"
                                     }
                                 />
@@ -349,7 +349,7 @@ export default function Create({ categories, products, units = [] }) {
                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
                                 <Input
                                     type="number"
-                                    label="Stok Minimum"
+                                    label="Minimum Stock"
                                     value={data.min_stock}
                                     onChange={(e) =>
                                         setData("min_stock", e.target.value)
@@ -359,7 +359,7 @@ export default function Create({ categories, products, units = [] }) {
                                 />
                                 <Input
                                     type="number"
-                                    label="Stok Maksimum"
+                                    label="Maximum Stock"
                                     value={data.max_stock}
                                     onChange={(e) =>
                                         setData("max_stock", e.target.value)
@@ -368,17 +368,17 @@ export default function Create({ categories, products, units = [] }) {
                                     placeholder="0"
                                 />
                                 <p className="sm:col-span-2 text-xs text-slate-500 dark:text-slate-400">
-                                    Dipakai untuk reorder point: saat stok
-                                    menyentuh minimum, draft purchase order
-                                    otomatis dibuat oleh sistem (reorder:generate
-                                    harian).
+                                    Used for the reorder point: when stock
+                                    reaches the minimum, the system automatically
+                                    creates a draft purchase order (daily
+                                    reorder:generate).
                                 </p>
                             </div>
 
                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
                                 <div>
                                     <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
-                                        Tipe Pajak
+                                        Tax Type
                                     </label>
                                     <div className="flex gap-4">
                                         <label className="flex items-center gap-2 text-sm">
@@ -426,7 +426,7 @@ export default function Create({ categories, products, units = [] }) {
                                 </div>
                                 <Input
                                     type="number"
-                                    label="Persentase Pajak (%)"
+                                    label="Tax Rate (%)"
                                     value={data.tax_rate}
                                     onChange={(e) =>
                                         setData("tax_rate", e.target.value)
@@ -442,7 +442,7 @@ export default function Create({ categories, products, units = [] }) {
                                     <div className="flex items-center justify-between">
                                         <div>
                                             <p className="text-sm text-success-700 dark:text-success-400 font-medium">
-                                                Estimasi Profit per Item
+                                                Estimated Profit per Item
                                             </p>
                                             <p className="text-2xl font-bold text-success-600 dark:text-success-500 mt-1">
                                                 + Rp{" "}
@@ -477,7 +477,7 @@ export default function Create({ categories, products, units = [] }) {
                                 <div className="flex items-center justify-between mb-4">
                                     <h3 className="text-sm font-semibold text-slate-700 dark:text-slate-300 flex items-center gap-2">
                                         <IconRulerMeasure size={18} />
-                                        Satuan
+                                        Units
                                     </h3>
                                     <button
                                         type="button"
@@ -487,7 +487,7 @@ export default function Create({ categories, products, units = [] }) {
                                         }
                                         className="text-sm text-primary-600 hover:text-primary-700 font-medium disabled:opacity-40"
                                     >
-                                        + Tambah Satuan
+                                        + Add Unit
                                     </button>
                                 </div>
                                 {errors.units && (
@@ -497,9 +497,9 @@ export default function Create({ categories, products, units = [] }) {
                                 )}
                                 {data.units.length === 0 && (
                                     <p className="text-sm text-slate-500">
-                                        Satuan dasar otomatis dibuat jika tidak
-                                        ditambahkan. Tambahkan satuan (box, kg,
-                                        dll) untuk penjualan multi-satuan.
+                                        A base unit is created automatically if none
+                                        is added. Add units (box, kg, etc.) for
+                                        multi-unit sales.
                                     </p>
                                 )}
                                 <div className="space-y-3">
@@ -525,7 +525,7 @@ export default function Create({ categories, products, units = [] }) {
                                                             value?.id ?? ""
                                                         )
                                                     }
-                                                    placeholder="Pilih satuan"
+                                                    placeholder="Select unit"
                                                     errors={
                                                         errors[
                                                             `units.${index}.unit_id`
@@ -555,7 +555,7 @@ export default function Create({ categories, products, units = [] }) {
                                                             `units.${index}.conversion_factor`
                                                         ]
                                                     }
-                                                    placeholder="Konversi"
+                                                    placeholder="Conversion"
                                                     disabled={row.is_base}
                                                 />
                                             </div>
@@ -576,7 +576,7 @@ export default function Create({ categories, products, units = [] }) {
                                                             `units.${index}.sell_price`
                                                         ]
                                                     }
-                                                    placeholder="Harga jual"
+                                                    placeholder="Sell price"
                                                 />
                                             </div>
                                             <div className="w-44">
@@ -595,7 +595,7 @@ export default function Create({ categories, products, units = [] }) {
                                                             `units.${index}.barcode`
                                                         ]
                                                     }
-                                                    placeholder="Barcode (opsional)"
+                                                    placeholder="Barcode (optional)"
                                                 />
                                             </div>
                                             <label className="flex items-center gap-1 pb-3 text-xs text-slate-600 dark:text-slate-300 whitespace-nowrap">
@@ -611,7 +611,7 @@ export default function Create({ categories, products, units = [] }) {
                                                     }
                                                     className="rounded border-slate-300 text-primary-600 focus:ring-primary-500"
                                                 />
-                                                Dasar
+                                                Base
                                             </label>
                                             <button
                                                 type="button"
@@ -634,14 +634,14 @@ export default function Create({ categories, products, units = [] }) {
                                 <div className="flex items-center justify-between mb-4">
                                     <h3 className="text-sm font-semibold text-slate-700 dark:text-slate-300 flex items-center gap-2">
                                         <IconPackages size={18} />
-                                        Komponen Paket
+                                        Bundle Components
                                     </h3>
                                     <button
                                         type="button"
                                         onClick={addComponent}
                                         className="text-sm text-primary-600 hover:text-primary-700 font-medium"
                                     >
-                                        + Tambah Komponen
+                                        + Add Component
                                     </button>
                                 </div>
                                 {errors.components && (
@@ -651,8 +651,8 @@ export default function Create({ categories, products, units = [] }) {
                                 )}
                                 {data.components.length === 0 && (
                                     <p className="text-sm text-slate-500">
-                                        Belum ada komponen. Stok dan harga jual
-                                        dihitung otomatis dari komponen.
+                                        No components yet. Stock and sell price
+                                        are calculated automatically from components.
                                     </p>
                                 )}
                                 <div className="space-y-3">
@@ -684,7 +684,7 @@ export default function Create({ categories, products, units = [] }) {
                                                             value?.id ?? ""
                                                         )
                                                     }
-                                                    placeholder="Pilih produk komponen"
+                                                    placeholder="Select component product"
                                                     errors={
                                                         errors[
                                                             `components.${index}.component_product_id`
@@ -728,7 +728,7 @@ export default function Create({ categories, products, units = [] }) {
                                 </div>
                                 {data.is_composite && estimatedSellPrice > 0 && (
                                     <p className="mt-4 text-sm text-slate-500 dark:text-slate-400">
-                                        Estimasi harga jual dari komponen:{" "}
+                                        Estimated sell price from components:{" "}
                                         <span className="font-semibold text-slate-700 dark:text-slate-200">
                                             Rp{" "}
                                             {estimatedSellPrice.toLocaleString(
@@ -746,7 +746,7 @@ export default function Create({ categories, products, units = [] }) {
                                 href={route("products.index")}
                                 className="px-6 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 font-medium transition-colors"
                             >
-                                Batal
+                                Cancel
                             </Link>
                             <button
                                 type="submit"
@@ -754,7 +754,7 @@ export default function Create({ categories, products, units = [] }) {
                                 className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl bg-primary-500 hover:bg-primary-600 text-white font-medium transition-colors disabled:opacity-50"
                             >
                                 <IconDeviceFloppy size={18} />
-                                {processing ? "Menyimpan..." : "Simpan Produk"}
+                                {processing ? "Saving..." : "Save Product"}
                             </button>
                         </div>
                     </div>

@@ -88,20 +88,20 @@ function ProductCard({
                 <div className="absolute top-2 right-2 flex flex-col items-end gap-1">
                     {isComposite && (
                         <span className="px-2 py-1 text-xs font-semibold bg-primary-500 text-white rounded-full">
-                            Komposit
+                            Composite
                         </span>
                     )}
                     {outOfStock ? (
                         <span className="px-2 py-1 text-xs font-semibold bg-danger-500 text-white rounded-full">
-                            Habis
+                            Out of Stock
                         </span>
                     ) : lowStock ? (
                         <span className="px-2 py-1 text-xs font-semibold bg-warning-500 text-white rounded-full">
-                            Stok: {product.stock}
+                            Stock: {product.stock}
                         </span>
                     ) : (
                         <span className="px-2 py-1 text-xs font-medium bg-slate-900/60 text-white rounded-full">
-                            Stok: {product.stock}
+                            Stock: {product.stock}
                         </span>
                     )}
                 </div>
@@ -135,7 +135,7 @@ function ProductCard({
             <div className="p-3 sm:p-4">
                 <div className="flex items-start justify-between gap-2 mb-2">
                     <span className="px-2 py-0.5 text-xs font-medium bg-primary-100 dark:bg-primary-900/50 text-primary-700 dark:text-primary-400 rounded-md truncate">
-                        {product.category?.name || "Kategori"}
+                        {product.category?.name || "Category"}
                     </span>
                 </div>
                 <h3 className="text-sm font-semibold text-slate-800 dark:text-slate-200 line-clamp-2 mb-1">
@@ -165,7 +165,7 @@ function ProductCard({
                     {/* Buy Price - Subtle */}
                     <div className="flex items-center justify-between mt-1">
                         <p className="text-xs text-slate-400 dark:text-slate-500">
-                            Modal: {formatCurrency(product.buy_price)}
+                            Cost: {formatCurrency(product.buy_price)}
                         </p>
                         {/* Profit Indicator */}
                         {product.sell_price > product.buy_price && (
@@ -235,17 +235,17 @@ export default function Index({ products }) {
 
     return (
         <>
-            <Head title="Produk" />
+            <Head title="Products" />
 
             {/* Header */}
             <div data-tour="products-header" className="mb-6">
                 <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                     <div>
                         <h1 className="text-2xl font-bold text-slate-900 dark:text-white">
-                            Produk
+                            Products
                         </h1>
                         <p className="text-sm text-slate-500 dark:text-slate-400">
-                            {products.total} produk terdaftar
+                            {products.total} products registered
                         </p>
                     </div>
                     <div
@@ -257,7 +257,7 @@ export default function Index({ products }) {
                             className="inline-flex items-center justify-center gap-2 px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-700 text-sm font-medium text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors w-full sm:w-auto"
                         >
                             <IconBarcode size={18} />
-                            Cetak All Barcode
+                            Print All Barcodes
                         </button>
                         {canCreateProducts && (
                             <>
@@ -300,7 +300,7 @@ export default function Index({ products }) {
                                 className={
                                     "bg-primary-500 hover:bg-primary-600 text-white shadow-lg shadow-primary-500/30 w-full sm:w-auto justify-center"
                                 }
-                                label={"Tambah Produk"}
+                                label={"Add Product"}
                                 href={route("products.create")}
                             />
                         )}
@@ -317,7 +317,7 @@ export default function Index({ products }) {
                     <div className="w-full sm:w-80">
                         <Search
                             url={route("products.index")}
-                            placeholder="Cari produk..."
+                            placeholder="Search products..."
                         />
                     </div>
                     {/* Select All Checkbox */}
@@ -333,7 +333,7 @@ export default function Index({ products }) {
                             className="w-4 h-4 rounded border-slate-300 text-primary-500 focus:ring-primary-500"
                         />
                         <span className="text-sm text-slate-600 dark:text-slate-400 hidden sm:inline">
-                            Pilih Semua
+                            Select All
                         </span>
                     </label>
                 </div>
@@ -345,7 +345,7 @@ export default function Index({ products }) {
                             className="inline-flex items-center gap-2 px-3 py-2 rounded-xl bg-primary-500 hover:bg-primary-600 text-white text-sm font-medium transition-colors"
                         >
                             <IconPrinter size={18} />
-                            Cetak Terpilih ({selectedProducts.length})
+                            Print Selected ({selectedProducts.length})
                         </button>
                     )}
                     <button
@@ -395,16 +395,16 @@ export default function Index({ products }) {
                     </div>
                 ) : (
                     /* List View */
-                    <Table.Card title={"Data Produk"}>
+                    <Table.Card title={"Product Data"}>
                         <Table>
                             <Table.Thead>
                                 <tr>
                                     <Table.Th className="w-10">No</Table.Th>
-                                    <Table.Th>Produk</Table.Th>
-                                    <Table.Th>Kategori</Table.Th>
-                                    <Table.Th>Harga Beli</Table.Th>
-                                    <Table.Th>Harga Jual</Table.Th>
-                                    <Table.Th>Stok</Table.Th>
+                                    <Table.Th>Product</Table.Th>
+                                    <Table.Th>Category</Table.Th>
+                                    <Table.Th>Buy Price</Table.Th>
+                                    <Table.Th>Sell Price</Table.Th>
+                                    <Table.Th>Stock</Table.Th>
                                     <Table.Th></Table.Th>
                                 </tr>
                             </Table.Thead>
@@ -537,10 +537,10 @@ export default function Index({ products }) {
                         />
                     </div>
                     <h3 className="text-lg font-medium text-slate-800 dark:text-slate-200 mb-1">
-                        Belum Ada Produk
+                        No Products Yet
                     </h3>
                     <p className="text-sm text-slate-500 dark:text-slate-400 mb-4">
-                        Tambahkan produk pertama Anda untuk memulai.
+                        Add your first product to get started.
                     </p>
                     {canCreateProducts && (
                         <Button
@@ -549,7 +549,7 @@ export default function Index({ products }) {
                             className={
                                 "bg-primary-500 hover:bg-primary-600 text-white"
                             }
-                            label={"Tambah Produk"}
+                            label={"Add Product"}
                             href={route("products.create")}
                         />
                     )}
