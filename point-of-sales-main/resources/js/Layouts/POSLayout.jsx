@@ -122,12 +122,12 @@ export default function POSLayout({ children }) {
                                 />
                             ) : (
                                 <div className="w-full h-full flex items-center justify-center bg-primary-600 text-white font-bold text-sm">
-                                    {(storeProfile?.name || "K").charAt(0)}
+                                    {(storeProfile?.name || "C").charAt(0)}
                                 </div>
                             )}
                         </div>
                         <span className="hidden sm:block text-lg font-bold text-slate-800 dark:text-white">
-                            {storeProfile?.name || "KASIR"}
+                            {storeProfile?.name || "CASHIER"}
                         </span>
                     </Link>
 
@@ -192,7 +192,7 @@ export default function POSLayout({ children }) {
                     <button
                         onClick={toggleFullscreen}
                         className="p-2.5 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors min-w-touch min-h-touch flex items-center justify-center"
-                        title={isFullscreen ? "Keluar Fullscreen" : "Fullscreen"}
+                        title={isFullscreen ? "Exit Fullscreen" : "Fullscreen"}
                     >
                         {isFullscreen ? (
                             <IconArrowsMinimize size={20} className="text-slate-500" />
@@ -255,13 +255,13 @@ export default function POSLayout({ children }) {
 
             {!isOnline && (
                 <div className="bg-amber-500 text-white text-center text-xs font-medium py-1 px-4">
-                    Transaksi disimpan offline — akan dikirim saat online kembali
+                    Transactions are saved offline — they will be sent when back online
                 </div>
             )}
 
             {isOnline && pendingSyncCount > 0 && (
                 <div className="bg-amber-100 dark:bg-amber-900/40 text-amber-800 dark:text-amber-200 text-center text-xs font-medium py-1 px-4">
-                    {pendingSyncCount} transaksi menunggu sinkronisasi
+                    {pendingSyncCount} transaction(s) pending sync
                 </div>
             )}
 
@@ -289,7 +289,7 @@ export default function POSLayout({ children }) {
                             >
                                 <IconHistory size={20} />
                                 <span className="font-medium">
-                                    Riwayat Transaksi
+                                    Transaction History
                                 </span>
                             </Link>
                             <Link
@@ -297,7 +297,7 @@ export default function POSLayout({ children }) {
                                 className="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-700 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800 transition-colors"
                             >
                                 <IconUser size={20} />
-                                <span className="font-medium">Profil</span>
+                                <span className="font-medium">Profile</span>
                             </Link>
                             <hr className="border-slate-200 dark:border-slate-700" />
                             <Link
@@ -307,7 +307,7 @@ export default function POSLayout({ children }) {
                                 className="flex items-center gap-3 px-4 py-3 rounded-xl text-danger-600 hover:bg-danger-50 dark:hover:bg-danger-950/50 transition-colors w-full"
                             >
                                 <IconLogout size={20} />
-                                <span className="font-medium">Keluar</span>
+                                <span className="font-medium">Logout</span>
                             </Link>
                         </nav>
                     </div>

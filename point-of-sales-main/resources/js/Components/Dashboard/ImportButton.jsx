@@ -9,8 +9,8 @@ export default function ImportButton({ routeName, label = "Import", accept = ".x
         const file = e.target.files?.[0];
         if (!file) return;
         router.post(route(routeName), { file }, {
-            onSuccess: () => { toast.success("Import selesai"); e.target.value = ""; },
-            onError: () => { toast.error("Gagal import"); e.target.value = ""; },
+            onSuccess: () => { toast.success("Import complete"); e.target.value = ""; },
+            onError: () => { toast.error("Import failed"); e.target.value = ""; },
         });
     };
 

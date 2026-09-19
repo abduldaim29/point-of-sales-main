@@ -12,7 +12,7 @@ import React from "react";
  */
 export default function ThermalReceipt({
     transaction,
-    storeName = "TOKO ANDA",
+    storeName = "YOUR STORE",
     storeAddress = "",
     storePhone = "",
     storeEmail = "",
@@ -58,12 +58,12 @@ export default function ThermalReceipt({
     const change = transaction?.change || 0;
 
     const paymentLabels = {
-        cash: "TUNAI",
-        bank_transfer: "TRANSFER BANK",
+        cash: "CASH",
+        bank_transfer: "BANK TRANSFER",
         midtrans: "MIDTRANS",
         xendit: "XENDIT",
         qris: "QRIS",
-        split: "SPLIT PEMBAYARAN",
+        split: "SPLIT PAYMENT",
     };
     const paymentMethod =
         paymentLabels[transaction?.payment_method?.toLowerCase()] || "TUNAI";
@@ -114,16 +114,16 @@ export default function ThermalReceipt({
                     <span>{transaction?.invoice}</span>
                 </div>
                 <div className="flex justify-between">
-                    <span>Tgl:</span>
+                    <span>Date:</span>
                     <span>{formatDate(transaction?.created_at)}</span>
                 </div>
                 <div className="flex justify-between">
-                    <span>Kasir:</span>
+                    <span>Cashier:</span>
                     <span>{transaction?.cashier?.name || "-"}</span>
                 </div>
                 <div className="flex justify-between">
-                    <span>Pelanggan:</span>
-                    <span>{transaction?.customer?.name || "Umum"}</span>
+                    <span>Customer:</span>
+                    <span>{transaction?.customer?.name || "Walk-in"}</span>
                 </div>
             </div>
 
@@ -183,7 +183,7 @@ export default function ThermalReceipt({
                 )}
                 {discount > 0 && (
                     <div className="flex justify-between">
-                        <span>Diskon Manual</span>
+                        <span>Manual Discount</span>
                         <span>-{formatPrice(discount)}</span>
                     </div>
                 )}
@@ -195,13 +195,13 @@ export default function ThermalReceipt({
                 )}
                 {loyaltyDiscount > 0 && (
                     <div className="flex justify-between">
-                        <span>Redeem Poin</span>
+                        <span>Points Redeemed</span>
                         <span>-{formatPrice(loyaltyDiscount)}</span>
                     </div>
                 )}
                 {shipping > 0 && (
                     <div className="flex justify-between">
-                        <span>Ongkir</span>
+                        <span>Shipping</span>
                         <span>{formatPrice(shipping)}</span>
                     </div>
                 )}
@@ -231,12 +231,12 @@ export default function ThermalReceipt({
                 ) : (
                     <>
                         <div className="flex justify-between">
-                            <span>Bayar ({paymentMethod})</span>
+                            <span>Paid ({paymentMethod})</span>
                             <span>{formatPrice(cash)}</span>
                         </div>
                         {change > 0 && (
                             <div className="flex justify-between font-bold">
-                                <span>Kembali</span>
+                                <span>Change</span>
                                 <span>{formatPrice(change)}</span>
                             </div>
                         )}
@@ -248,9 +248,9 @@ export default function ThermalReceipt({
 
             {/* Footer */}
             <div className="text-center mt-2">
-                <p className="text-xs">Terima kasih</p>
-                <p className="text-xs">Barang yang sudah dibeli</p>
-                <p className="text-xs">tidak dapat ditukar/dikembalikan</p>
+                <p className="text-xs">Thank you</p>
+                <p className="text-xs">Purchased items</p>
+                <p className="text-xs">cannot be exchanged/returned</p>
                 <p className="text-xs mt-1">#{transaction?.invoice}</p>
                 <SimpleBarcode value={transaction?.invoice} />
             </div>
@@ -279,7 +279,7 @@ export default function ThermalReceipt({
  */
 export function ThermalReceipt58mm({
     transaction,
-    storeName = "TOKO",
+    storeName = "STORE",
     storePhone = "",
     storeEmail = "",
     storeWebsite = "",
@@ -407,19 +407,19 @@ export function ThermalReceipt58mm({
             )}
             {loyaltyDiscount > 0 && (
                 <div className="flex justify-between">
-                    <span>Poin</span>
+                    <span>Points</span>
                     <span>-{formatPrice(loyaltyDiscount)}</span>
                 </div>
             )}
             {Number(transaction?.shipping_cost || 0) > 0 && (
                 <div className="flex justify-between">
-                    <span>Ongkir</span>
+                    <span>Shipping</span>
                     <span>{formatPrice(transaction?.shipping_cost)}</span>
                 </div>
             )}
             {Number(transaction?.tax_total || 0) > 0 && (
                 <div className="flex justify-between">
-                    <span>PPN</span>
+                    <span>VAT</span>
                     <span>{formatPrice(transaction?.tax_total)}</span>
                 </div>
             )}
@@ -437,17 +437,17 @@ export function ThermalReceipt58mm({
             ) : (
                 <>
                     <div className="flex justify-between">
-                        <span>Bayar</span>
+                        <span>Paid</span>
                         <span>{formatPrice(transaction?.cash)}</span>
                     </div>
                     <div className="flex justify-between">
-                        <span>Kembali</span>
+                        <span>Change</span>
                         <span>{formatPrice(transaction?.change)}</span>
                     </div>
                 </>
             )}
             <pre>{line}</pre>
-            <p className="text-center">Terima kasih!</p>
+            <p className="text-center">Thank you!</p>
             <SimpleBarcode value={transaction?.invoice} />
 
             <style>{`

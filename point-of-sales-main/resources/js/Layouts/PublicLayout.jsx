@@ -10,10 +10,10 @@ const GITHUB_URL = "https://github.com/aryadwiputra/point-of-sales";
 const DOCS_URL = `${GITHUB_URL}/blob/main/docs/getting-started.md`;
 
 export const NAV_LINKS = [
-    { label: "Fitur", href: "/fitur" },
-    { label: "Dokumentasi", href: "/dokumentasi" },
+    { label: "Features", href: "/fitur" },
+    { label: "Documentation", href: "/dokumentasi" },
     { label: "Roadmap", href: "/roadmap" },
-    { label: "Kontribusi", href: "/kontribusi" },
+    { label: "Contribute", href: "/kontribusi" },
 ];
 
 export default function PublicLayout({ children, active = "" }) {
@@ -61,7 +61,7 @@ export default function PublicLayout({ children, active = "" }) {
                             href="/login"
                             className="px-5 py-2 text-sm font-medium text-slate-700 dark:text-slate-300 hover:text-primary-500 transition-colors"
                         >
-                            Masuk
+                            Sign In
                         </Link>
                         <a
                             href={GITHUB_URL}
@@ -90,29 +90,29 @@ export default function PublicLayout({ children, active = "" }) {
                                 Dikasir
                             </div>
                             <div className="text-xs text-slate-500">
-                                Sistem kasir open source untuk UMKM
+                                Open source POS system for small businesses
                             </div>
                         </div>
                     </div>
 
                     <div className="flex flex-wrap items-center gap-6 text-sm text-slate-500 dark:text-slate-400">
                         <Link href="/fitur" className="hover:text-primary-500 transition-colors">
-                            Fitur
+                            Features
                         </Link>
                         <Link href="/dokumentasi" className="hover:text-primary-500 transition-colors">
-                            Dokumentasi
+                            Documentation
                         </Link>
                         <Link href="/roadmap" className="hover:text-primary-500 transition-colors">
                             Roadmap
                         </Link>
                         <Link href="/kontribusi" className="hover:text-primary-500 transition-colors">
-                            Kontribusi
+                            Contribute
                         </Link>
                         <a href={GITHUB_URL} target="_blank" rel="noopener noreferrer" className="hover:text-primary-500 transition-colors">
                             GitHub
                         </a>
                         <a href={`${GITHUB_URL}/blob/main/LICENSE`} target="_blank" rel="noopener noreferrer" className="hover:text-primary-500 transition-colors">
-                            Lisensi MIT
+                            MIT License
                         </a>
                     </div>
 

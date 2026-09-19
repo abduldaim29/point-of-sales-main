@@ -101,7 +101,7 @@ export default function BarcodeLabel({
                     className="text-slate-500 mt-0.5"
                     style={{ fontSize: size === "50x30" ? "8px" : "10px" }}
                 >
-                    + Ongkir {formatPrice(ongkirAmount)}
+                    + Shipping {formatPrice(ongkirAmount)}
                 </p>
             )}
         </div>

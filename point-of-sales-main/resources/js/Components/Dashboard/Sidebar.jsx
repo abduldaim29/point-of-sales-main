@@ -9,7 +9,7 @@ export default function Sidebar({ sidebarOpen }) {
     const { auth, storeProfile, appVersion } = usePage().props;
     const menuNavigation = Menu();
 
-    const storeName = storeProfile?.name || "KASIR";
+    const storeName = storeProfile?.name || "CASHIER";
     const storeLogo = storeProfile?.logo || null;
     const storeInitial =
         storeName?.charAt(0)?.toUpperCase() ||
